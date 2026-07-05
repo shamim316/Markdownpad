@@ -1,0 +1,70 @@
+{
+  "name": "markdownpad",
+  "version": "1.0.0",
+  "description": "A Notepad-style Markdown editor for Windows 11 with live split-pane preview and auto-save.",
+  "author": "shamim316 <shamim316@gmail.com>",
+  "license": "MIT",
+  "main": "main.js",
+  "homepage": "https://github.com/shamim316/Markdownpad",
+  "repository": "github:shamim316/Markdownpad",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "dompurify": "^3.2.4",
+    "github-markdown-css": "^5.8.1",
+    "highlight.js": "^11.11.1",
+    "marked": "^15.0.6"
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.shamim316.markdownpad",
+    "publish": null,
+    "productName": "MarkdownPad",
+    "artifactName": "MarkdownPad-Setup-${version}.${ext}",
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "build/icon.png",
+      "!**/*.md"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "MarkdownPad"
+    },
+    "fileAssociations": [
+      {
+        "ext": "md",
+        "name": "Markdown Document",
+        "role": "Editor"
+      },
+      {
+        "ext": "markdown",
+        "name": "Markdown Document",
+        "role": "Editor"
+      }
+    ]
+  }
+}
